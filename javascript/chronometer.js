@@ -1,26 +1,36 @@
 class Chronometer {
   constructor() {
-    // ... your code goes here
+    this.currentTime = 0;
+    this.intervalId = 0;
   }
   startClick(callback) {
-    // ... your code goes here
+    setInterval(() => {
+      this.currentTime = this.currentTime + 1; //we want this to run every 1000 miliseconds
+    }, 1000);
   }
   getMinutes() {
-    // ... your code goes here
+  return Math.floor(this.currentTime / 60)
   }
   getSeconds() {
-    // ... your code goes here
+   return this.currentTime % 60
   }
-  twoDigitsNumber() {
-    // ... your code goes here
+  twoDigitsNumber(number) {  //On voit dans les tests qu'il faut un argument ici. On l'apl number.
+    if (number < 10) {
+      return `0${number}`
+    } else {
+      return `${number}`
+    }
+
   }
   stopClick() {
-    // ... your code goes here
+    clearInterval(this.intervalId) 
   }
   resetClick() {
-    // ... your code goes here
+    this.currentTime = 0;
   }
+  
   splitClick() {
-    // ... your code goes here
-  }
+      return `${this.twoDigitsNumber(this.getMinutes())}:${this.twoDigitsNumber(this.getSeconds())}`;
+      }
 }
+
