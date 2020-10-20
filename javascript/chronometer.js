@@ -3,9 +3,12 @@ class Chronometer {
     this.currentTime = 0;
     this.intervalId = 0;
   }
-  startClick(callback) {
-    setInterval(() => {
+  startClick(printTime) {
+    this.intervalId = setInterval(() => {
       this.currentTime = this.currentTime + 1; //we want this to run every 1000 miliseconds
+      if (printTime) {
+        printTime();
+      }
     }, 1000);
   }
   getMinutes() {
@@ -20,7 +23,6 @@ class Chronometer {
     } else {
       return `${number}`
     }
-
   }
   stopClick() {
     clearInterval(this.intervalId) 
